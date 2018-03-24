@@ -165,6 +165,86 @@ Attempts to ssh to github
   <p>wkhtmltopdf http://blog.topspeedsnail.com output.pdf</p>
 </blockquote>
 
+<h3 id="tlp10">电源管理工具TLP1.0</h3>
+<p>安装tpl
+<code class="highlighter-rouge">
+$ sudo add-apt-repository ppa:linrunner/tlp
+$ sudo apt-get update
+$ sudo apt-get install tlp
+</code>
+检查TLP是否正常运行</p>
+
+<blockquote>
+  <p>$ sudo tlp start</p>
+</blockquote>
+
+<p>现实所有信息和设置</p>
+
+<blockquote>
+  <p>$ sudo tlp stat</p>
+</blockquote>
+
+<p>只显示电池信息</p>
+
+<blockquote>
+  <p>$ sudo tlp stat -b</p>
+</blockquote>
+
+<p>只显示温度和风扇转速</p>
+
+<blockquote>
+  <p>$ sudo tlp stat -t</p>
+</blockquote>
+
+<p>卸载</p>
+
+<blockquote>
+  <p>sudo apt-get remove –antoremove tlp</p>
+</blockquote>
+
+<h3 id="opengl">安装openGL</h3>
+<p>安装编译器与基本的函式库</p>
+
+<blockquote>
+  <p>$ sudo apt-get install build-essential</p>
+</blockquote>
+
+<p>安装OpenGLLibrary</p>
+
+<blockquote>
+  <p>$ sudo apt-get install libgl1-mesa-dev</p>
+</blockquote>
+
+<p>安装OpenGLUtilities</p>
+
+<blockquote>
+  <p>$ sudo apt-get install libglu1-mesa-dev</p>
+</blockquote>
+
+<p>OpenGLUtilities是一组建构于 OpenGLLibrary之上的工具组，提供许多很方便的函式，使OpenGL更强大且更容易使用。</p>
+
+<p>安装OpenGLUtility Toolkit</p>
+
+<blockquote>
+  <p>$ sudo apt-get install libglut-dev</p>
+</blockquote>
+
+<blockquote>
+  <p>$ sudo apt-get install freeglut3-dev</p>
+</blockquote>
+
+<p>编译</p>
+
+<blockquote>
+  <p>$ gcc -o test test.c -lGL -lGLU -lglut</p>
+</blockquote>
+
+<p>执行</p>
+
+<blockquote>
+  <p>$./test</p>
+</blockquote>
+
 
 		  </article>
 		<hr>

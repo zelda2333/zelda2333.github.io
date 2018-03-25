@@ -78,29 +78,14 @@
 
 <h3 id="ubuntu-1">Ubuntu安装搜狗输入法</h3>
 
-<blockquote>
-  <p>sudo dpkg -i sogoupinyin_2.2.0.0102_amd64.deb</p>
-</blockquote>
-
-<blockquote>
-  <p>sudo add-apt-repository ppa:fcitx-team/nightly</p>
-</blockquote>
-
-<blockquote>
-  <p>sudo apt-get -f install</p>
-</blockquote>
-
-<blockquote>
-  <p>sudo apt-get install fcitx-table-all</p>
-</blockquote>
-
-<blockquote>
-  <p>sudo apt-get install im-switch</p>
-</blockquote>
-
-<blockquote>
-  <p>sudo dpkg -i sogoupinyin_2.2.0.0102_amd64.deb</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo dpkg -i sogoupinyin_2.2.0.0102_amd64.deb
+sudo add-apt-repository ppa:fcitx-team/nightly
+sudo apt-get -f install
+sudo apt-get install fcitx-table-all
+sudo apt-get install im-switch
+sudo dpkg -i sogoupinyin_2.2.0.0102_amd64.deb
+</code></pre>
+</div>
 
 <p>最后进行设置后注销一下</p>
 
@@ -108,163 +93,237 @@
 
 <h3 id="gitssh-key">初次使用git配置ssh-key</h3>
 
-<ol>
-  <li>
-    <p>查看是否已生成公钥
- SSH 公钥默认储存在账户的主目录下的 ~/.ssh 目录
-<code class="highlighter-rouge">
-$ cd ~/.ssh
+<p>查看是否已生成公钥
+    SSH 公钥默认储存在账户的主目录下的 ~/.ssh 目录</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cd ~/.ssh
 $ ls
 authorized_keys2  id_dsa       known_hosts config            id_dsa.pub
-</code>
-如果没有id_rsa和id_rsa.pub或者没有 .ssh 目录，可以用 ssh-keygen 来创建。
-该程序在 Linux/Mac 系统上由 SSH 包提供，而在 Windows 上则包含在 MSysGit 包里：
-<code class="highlighter-rouge">
-$ ssh-keygen -t rsa -C "your_email@youremail.com"
-Creates a new ssh key using the provided email # Generating public/private rsa key pair.
+</code></pre>
+</div>
+
+<p>如果没有id_rsa和id_rsa.pub或者没有 .ssh 目录，可以用 ssh-keygen 来创建。
+该程序在 Linux/Mac 系统上由 SSH 包提供，而在 Windows 上则包含在 MSysGit 包里：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ ssh-keygen -t rsa -C "your_email@youremail.com"
+Creates a new ssh key using the provided email # Generating public/private  rsa key pair.
 Enter file in which to save the key (/home/you/.ssh/id_rsa):
-</code>
- 结果大概是如此：
-<code class="highlighter-rouge">
-Your public key has been saved in /home/you/.ssh/id_rsa.pub.
-The key fingerprint is: # 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@youremail.com
-</code></p>
-  </li>
-  <li>查看生成的公钥
-<code class="highlighter-rouge">
-$ cat ~/.ssh/id_rsa.pub
-</code></li>
-  <li>验证是否可以正常工作
-<code class="highlighter-rouge">
-$ ssh -T git@github.com
+</code></pre>
+</div>
+
+<p>结果大概是如此：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Your public key has been saved in /home/you/.ssh/id_rsa.pub.
+The key fingerprint is: # 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db                   your_email@youremail.com
+</code></pre>
+</div>
+
+<p>查看生成的公钥</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cat ~/.ssh/id_rsa.pub
+</code></pre>
+</div>
+
+<p>验证是否可以正常工作</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ ssh -T git@github.com
 Attempts to ssh to github
-</code></li>
-</ol>
+</code></pre>
+</div>
 
 <h3 id="markdown">使用Markdown进行文档工作</h3>
 
 <p>编辑markdown的工具我们使用retext</p>
 
-<blockquote>
-  <p>sudo apt-get install retext</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get install retext
+</code></pre>
+</div>
 
-<p>将MD文件转成html我们使用discont或python-markdown</p>
-
-<blockquote>
-  <p>markdown -o Name.html  Name.md</p>
-</blockquote>
-
-<blockquote>
-  <p>markdown_py -o html4 Name.md &gt; Name.html</p>
-</blockquote>
+<p>将MD文件转成html我们使用discont或python-markdown
+    markdown -o Name.html  Name.md
+    markdown_py -o html4 Name.md &gt; Name.html</p>
 
 <p>将html转换为pdf，安装wkhtmltopdf</p>
 
-<blockquote>
-  <p>wkhtmltopdf http://blog.topspeedsnail.com output.pdf</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>wkhtmltopdf http://blog.topspeedsnail.com output.pdf
+</code></pre>
+</div>
 
 <h3 id="tlp10">电源管理工具TLP1.0</h3>
-<p>安装tpl
-<code class="highlighter-rouge">
-$ sudo add-apt-repository ppa:linrunner/tlp
+<p>安装tpl</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo add-apt-repository ppa:linrunner/tlp
 $ sudo apt-get update
 $ sudo apt-get install tlp
-</code>
-检查TLP是否正常运行</p>
+</code></pre>
+</div>
 
-<blockquote>
-  <p>$ sudo tlp start</p>
-</blockquote>
+<p>检查TLP是否正常运行</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo tlp start
+</code></pre>
+</div>
 
 <p>现实所有信息和设置</p>
 
-<blockquote>
-  <p>$ sudo tlp stat</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo tlp stat
+</code></pre>
+</div>
 
 <p>只显示电池信息</p>
 
-<blockquote>
-  <p>$ sudo tlp stat -b</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo tlp stat -b
+</code></pre>
+</div>
 
 <p>只显示温度和风扇转速</p>
 
-<blockquote>
-  <p>$ sudo tlp stat -t</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo tlp stat -t
+</code></pre>
+</div>
 
 <p>卸载</p>
 
-<blockquote>
-  <p>sudo apt-get remove –antoremove tlp</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get remove --antoremove tlp
+</code></pre>
+</div>
 
 <h3 id="opengl">安装openGL</h3>
 <p>安装编译器与基本的函式库</p>
 
-<blockquote>
-  <p>$ sudo apt-get install build-essential</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo apt-get install build-essential  
+</code></pre>
+</div>
 
 <p>安装OpenGLLibrary</p>
 
-<blockquote>
-  <p>$ sudo apt-get install libgl1-mesa-dev</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo apt-get install libgl1-mesa-dev  
+</code></pre>
+</div>
 
 <p>安装OpenGLUtilities</p>
 
-<blockquote>
-  <p>$ sudo apt-get install libglu1-mesa-dev</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo apt-get install libglu1-mesa-dev  
+</code></pre>
+</div>
 
 <p>OpenGLUtilities是一组建构于 OpenGLLibrary之上的工具组，提供许多很方便的函式，使OpenGL更强大且更容易使用。</p>
 
 <p>安装OpenGLUtility Toolkit</p>
 
-<blockquote>
-  <p>$ sudo apt-get install libglut-dev</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo apt-get install libglut-dev  
 
-<blockquote>
-  <p>$ sudo apt-get install freeglut3-dev</p>
-</blockquote>
+$ sudo apt-get install freeglut3-dev 
+</code></pre>
+</div>
 
 <p>编译</p>
 
-<blockquote>
-  <p>$ gcc -o test test.c -lGL -lGLU -lglut</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ gcc -o test test.c -lGL -lGLU -lglut 
+</code></pre>
+</div>
 
 <p>执行</p>
 
-<blockquote>
-  <p>$./test</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>$./test 
+</code></pre>
+</div>
 
 <h3 id="java">安装java</h3>
 <p>安装jre</p>
 
-<blockquote>
-  <p>sudo apt-get install default-jre</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get install default-jre
+</code></pre>
+</div>
 
 <p>安装jdk</p>
 
-<blockquote>
-  <p>sudo apt-get install default-jdk</p>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get install default-jdk
+</code></pre>
+</div>
 
-<p>安装Oracle JDK
-<code class="highlighter-rouge">
-sudo add-apt-repository ppa:webupd8team/java
+<p>安装Oracle JDK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java8-installer
 sudo apt-get install oracle-java8-set-default
-</code></p>
+</code></pre>
+</div>
+
+<p>查找jdk安装路径</p>
+
+<ol>
+  <li>
+    <p>echo $JAVA_HOME</p>
+
+    <p>但是由于我没有配置环境变量，所以无法定位到jdk的安装路径</p>
+  </li>
+  <li>
+    <p>which java</p>
+
+    <p>$which java
+ $ls -lrt /usr/bin/java
+ $ls -lrt /etc/alternatives/java
+ $
+ $cd /usr/lib/jvm
+ $ls</p>
+  </li>
+</ol>
+
+<h3 id="tomcat">安装tomcat</h3>
+<p>先在/usr下新建文件夹tomcat，然后将文件夹apache-tomcat-8.5.9移动到目录/usr/tomcat下</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo mv apache-tomcat-8.5.9 /usr/tomcat/
+</code></pre>
+</div>
+
+<p>现在先修改一下tomcat文件夹的使用权限，否则可能在当前用户下不能进入bin目录</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd /usr
+sudo chmod 755 -R tomcat
+</code></pre>
+</div>
+
+<p>进入目录/usr/tomcat/apache-tomcat-8.5.9/bin，编辑文件startup.sh，在最后一行之前加入如下信息</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#set java environment
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:%{JAVA_HOME}/lib:%{JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH
+
+#tomcat
+export TOMCAT_HOME=/usr/tomcat/apache-tomcat-8.5.9
+</code></pre>
+</div>
+
+<p>编辑完后保存退出，然后运行startup.sh：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo ./startup.sh
+</code></pre>
+</div>
+
+<p>即可访问8080端口</p>
+
+<p>如果要关闭tomcat，类似的，需要先在文件shutdown.sh对应位置添加信息</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#set java environment
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:%{JAVA_HOME}/lib:%{JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH
+
+#tomcat
+export TOMCAT_HOME=/usr/tomcat/apache-tomcat-8.5.9
+</code></pre>
+</div>
+
+<p>然后执行如下命令即可</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo ./shutdown.sh
+</code></pre>
+</div>
 
 
 		  </article>

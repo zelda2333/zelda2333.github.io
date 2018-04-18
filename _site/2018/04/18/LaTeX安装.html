@@ -82,8 +82,9 @@ sudo apt-get install perl-tk
 </code></p>
 
 <h3 id="tex-live-2017">安装 TeX Live 2017</h3>
-<p>加载镜像
-<code class="highlighter-rouge">
+
+<h4 id="section-1">加载镜像</h4>
+<p><code class="highlighter-rouge">
 sudo mount -o loop texlive2017.iso /mnt
 </code>
 启动安装程序的图形化界面进行配置
@@ -92,9 +93,10 @@ cd /mnt
 sudo ./install-tl -gui
 </code></p>
 
-<h3 id="section-1">相关配置</h3>
-<p>安装完成后需进行环境变量的配置
-<code class="highlighter-rouge">
+<h3 id="section-2">相关配置</h3>
+
+<h4 id="section-3">配置环境变量</h4>
+<p><code class="highlighter-rouge">
 sudo vim ~/.bashrc
 </code>
 打开之后在文本最后添加：
@@ -107,24 +109,28 @@ export PATH=${PATH}:/usr/local/texlive/2016/bin/x86_64-linux
 <code class="highlighter-rouge">
 vim tryit.tex
 xelatex tryit.tex 
-</code>
-卸载挂载
-<code class="highlighter-rouge">
+</code></p>
+
+<h4 id="section-4">卸载挂载</h4>
+<p><code class="highlighter-rouge">
 sudo umount /mnt/
-</code>
-配置字体
-XeTeX 会使用 fontconfig 库来通过字体名搜索字体。TeX Live 的字体目录默认并不在 fongconfig 的搜索目录之列，因此需要按文档要求，将 TeX Live 安装目录下的 texmf-var/fonts/conf/texlive-fontconfig.conf 文件，复制到 /etc/fonts/conf.d/09-texlive.conf，然后运行 fc-cache，以确保 XeTeX 能搜索到字体。
+</code></p>
+
+<h4 id="section-5">配置字体</h4>
+
+<p>XeTeX 会使用 fontconfig 库来通过字体名搜索字体。TeX Live 的字体目录默认并不在 fongconfig 的搜索目录之列，因此需要按文档要求，将 TeX Live 安装目录下的 texmf-var/fonts/conf/texlive-fontconfig.conf 文件，复制到 /etc/fonts/conf.d/09-texlive.conf，然后运行 fc-cache，以确保 XeTeX 能搜索到字体。
 <code class="highlighter-rouge">
 sudo cp /usr/local/texlive/2017/texmf-var/fonts/conf/texlive-fontconfig.conf  /etc/fonts/conf.d/09-texlive.conf
 sudo fc-cache -fsv
-</code>
-dummy package 安装</p>
+</code></p>
+
+<h4 id="dummy-package-">dummy package 安装</h4>
 
 <p>texlive2017安装之后需要“告诉”系统texlive相关软件包都安装好了。这样在系统安装依赖于tex的软件（比如R）时就不必重新下载软件仓库中的旧版 texlive 相关软件。也不会造成不同版本 tex 命令的冲突。dummy package 就是解决这样的软件依赖问题的“虚包”。</p>
 
 <p>Debian/Ubuntu下的dummy package 的制作可以参考<a href="https://www.tug.org/texlive/debian.html#vanilla">TUG上的官方说明</a>.</p>
 
-<p>编译安装texworks</p>
+<h4 id="texworks">编译安装texworks</h4>
 
 <p>目前texworks的源码似乎已经保存到github了，编译安装方式参照其主页上的说明即可。</p>
 

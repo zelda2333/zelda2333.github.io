@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+ 　　<html>
+ 　　<head>
+  　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  　　　　<title>Ubuntu下LaTeX的安装</title>
+  <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS 
+    <link href="/css/blog.css" rel="stylesheet">-->
+    <!-- index css -->
+    <link href="/css/index.css" rel="stylesheet">
+	<!-- pagments CSS-->
+	<link href="/css/pygments.css" rel="stylesheet">
+ 　　</head>
+ 　<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+          <a class="navbar-brand" href="/index.html">
+            
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+    
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <!-- Blog Post -->
+<!-- Title -->
+<div class="row">
+  <div class="post-area post">
+
+ 	<div class="post-list-body">
+        	<div class="all-posts" post-cate="All">
+ 		<header>
+		<h1>
+		  Ubuntu下LaTeX的安装
+		  <div class="post-date"><a href="https://github.com//.github.io/edit/master/_posts/2018-04-18-LaTeX安装.md" target="_blank">纠错</a>&nbsp;&nbsp;
+			<span class="glyphicon glyphicon-time"></span>
+			18 Apr 2018
+		  </div>
+		</h1>
+ 		</header>
+		<!-- Author -->
+		<hr>
+		 <article>
+		<h3 id="tex-live">关于TeX Live</h3>
+<p>CTeX, MiKTeX, TeX Live 均为 TeX 的发行版本，这里我安装的是Tex Live</p>
+
+<h3 id="section">准备工作</h3>
+<p>可以选择从官方站点下载安装包</p>
+
+<p><a href="http://mirror.ctan.org/systems/texlive/Images/texlive.iso">点击这里</a></p>
+
+<p>会比较慢，可以使用清华大学和中国科技大学的镜像站。</p>
+
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive.iso">点击这里1</a></p>
+
+<p><a href="https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/texlive.iso">点击这里2</a></p>
+
+<p>为了使用图形化安装界面，需要安装perl的tk组件：
+<code class="highlighter-rouge">
+sudo apt-get install perl-tk
+</code></p>
+
+<h3 id="tex-live-2017">安装 TeX Live 2017</h3>
+<p>加载镜像
+<code class="highlighter-rouge">
+sudo mount -o loop texlive2017.iso /mnt
+</code>
+启动安装程序的图形化界面进行配置
+<code class="highlighter-rouge">
+cd /mnt
+sudo ./install-tl -gui
+</code></p>
+
+<h3 id="section-1">相关配置</h3>
+<p>安装完成后需进行环境变量的配置
+<code class="highlighter-rouge">
+sudo vim ~/.bashrc
+</code>
+打开之后在文本最后添加：
+<code class="highlighter-rouge">
+export MANPATH=${MANPATH}:/usr/local/texlive/2016/texmf-dist/doc/man
+export INFOPATH=${INFOPATH}:/usr/local/texlive/2016/texmf-dist/doc/info
+export PATH=${PATH}:/usr/local/texlive/2016/bin/x86_64-linux
+</code>
+可以尝试写一个.tex文件，如果出现pdf文件说明安装成功
+<code class="highlighter-rouge">
+vim tryit.tex
+xelatex tryit.tex 
+</code>
+卸载挂载
+<code class="highlighter-rouge">
+sudo umount /mnt/
+</code>
+配置字体
+XeTeX 会使用 fontconfig 库来通过字体名搜索字体。TeX Live 的字体目录默认并不在 fongconfig 的搜索目录之列，因此需要按文档要求，将 TeX Live 安装目录下的 texmf-var/fonts/conf/texlive-fontconfig.conf 文件，复制到 /etc/fonts/conf.d/09-texlive.conf，然后运行 fc-cache，以确保 XeTeX 能搜索到字体。
+<code class="highlighter-rouge">
+sudo cp /usr/local/texlive/2017/texmf-var/fonts/conf/texlive-fontconfig.conf  /etc/fonts/conf.d/09-texlive.conf
+sudo fc-cache -fsv
+</code>
+dummy package 安装</p>
+
+<p>texlive2017安装之后需要“告诉”系统texlive相关软件包都安装好了。这样在系统安装依赖于tex的软件（比如R）时就不必重新下载软件仓库中的旧版 texlive 相关软件。也不会造成不同版本 tex 命令的冲突。dummy package 就是解决这样的软件依赖问题的“虚包”。</p>
+
+<p>Debian/Ubuntu下的dummy package 的制作可以参考<a href="https://www.tug.org/texlive/debian.html#vanilla">TUG上的官方说明</a>.</p>
+
+<p>编译安装texworks</p>
+
+<p>目前texworks的源码似乎已经保存到github了，编译安装方式参照其主页上的说明即可。</p>
+
+<p>目前的project位置： https://github.com/TeXworks/texworks</p>
+
+<p>编译说明：https://github.com/TeXworks/texworks/wiki/Building</p>
+
+<p>编译时如果提醒没有CMake，安装即可: apt-get install cmake</p>
+
+<p><code class="highlighter-rouge">
+$ sudo apt-get install build-essential git libpoppler-qt4-dev libhunspell-dev libdbus-1-dev liblua5.1-0-dev zlib1g-dev
+$ git clone https://github.com/TeXworks/texworks.git
+$ cd texworks
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+$ sudo make install #上面编译得到的texworks已经可以正常运行（./texworks正常工作）。借助 make install 将其copy到系统目录
+</code>
+将编译得到的texworks程序放到texlive的文件夹下
+<code class="highlighter-rouge">
+sudo cp ./texworks /usr/local/texlive/2017/bin/x86_64-linux
+</code>
+因为/usr/local/texlive/2017/bin/x86_64-linux已经在环境变量里，所以在终端用texworks命令就可以运行编译好的程序了。</p>
+
+<p>为了方便，为texworks添加程序启动器。其实下载的源代码文件夹下已经有texworks.desktop启动器文件，只要稍作修改即可。
+<code class="highlighter-rouge">
+$ sudo cp ./texworks.desktop /usr/share/applications
+$ sudo vi /usr/share/applications/texworks.desktop
+</code>
+修改texworks的运行路径为其完整的路径位置。利用texlive安装后保存的TeXworks.png文件做程序的icon。修改内容如下，其他内容不变。
+<code class="highlighter-rouge">
+ #Icon=TeXworks
+ Icon=/usr/local/texlive/2017/texmf-dist/doc/latex/uspatent/TeXworks.png
+ #Exec=texworks %F
+ Exec=/usr/local/texlive/2014/bin/x86_64-linux/texworks %F
+</code>
+启动TeXworks</p>
+
+<p>成功！</p>
+
+<p>参考链接</p>
+
+<p><a href="https://www.linuxidc.com/Linux/2016-08/133913.htm">Linux 系统下原版 TeX Live 2016 的安装与配置</a></p>
+
+<p><a href="https://www.cnblogs.com/liutongqing/p/6413774.html">Linux入门(11)——Ubuntu16.04安装texlive2016并配置texmaker和sublime text3</a></p>
+
+<p><a href="https://blog.csdn.net/guanggy/article/details/4783252">Ubuntu 安装texlive 并源码编译安装texworks lyx</a></p>
+
+<p><a href="https://zhuanlan.zhihu.com/p/20069414">Linux 发行版下原版 TeX Live 2015 的安装</a></p>
+
+
+		  </article>
+		<hr>
+	<br/>
+       
+	<div style="margin-top:10px;margin-bottom:10px">
+	  
+	  <span class="next">
+	    上篇：
+	    <a href="/2018/03/21/config.html">
+	      配置电脑
+	    </a>
+	  </span>
+	   
+	  
+	</div>
+	</div>
+	
+        
+	 </div>
+
+</div>
+
+> 
+</div>
+
+        </div>
+      <hr>
+      
+    </div>
+    <!-- /.container -->
+  </body>
+</html>
+

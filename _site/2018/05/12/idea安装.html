@@ -2,7 +2,7 @@
  　　<html>
  　　<head>
   　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  　　　　<title>Chrome 安装</title>
+  　　　　<title>idea 安装</title>
   <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS 
@@ -52,8 +52,8 @@
         	<div class="all-posts" post-cate="All">
  		<header>
 		<h1>
-		  Chrome 安装
-		  <div class="post-date"><a href="https://github.com//.github.io/edit/master/_posts/2018-05-12-chrome 安装.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  idea 安装
+		  <div class="post-date"><a href="https://github.com//.github.io/edit/master/_posts/2018-05-12-idea安装.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			12 May 2018
 		  </div>
@@ -62,22 +62,31 @@
 		<!-- Author -->
 		<hr>
 		 <article>
-		<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/
-wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
-sudo apt-get update
-sudo apt-get install google-chrome-stable
-/usr/bin/google-chrome-stable
-</code></pre></div></div>
-<h3 id="为chrome安装flash播放器插件">为chrome安装Flash播放器插件</h3>
-<p>屏幕右上角，“系统设置”–&gt;“软件和更新”–&gt;“其它软件”</p>
+		<h3 id="申请学生帐号">申请学生帐号</h3>
 
-<p>勾选“Canonical合作伙伴”</p>
+<p>使用校园邮箱到https://www.jetbrains.com/student 申请免费帐号</p>
 
-<p>点击“关闭”</p>
+<p>收到授权邮件，邮件标题为“JetBrains Student License Confirmation”。</p>
 
-<p>终端输入：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install adobe-flashplugin
-</code></pre></div></div>
+<p>点击邮件内的“Activate Educational License”链接将开启学生授权条款，请阅读后点击同意按钮。此时系统将询问您的 JetBrains Account 帐号，如果没有帐号请参考第5步申请。</p>
+
+<p>登录 https://account.jetbrains.com 确认授权。</p>
+
+<p>使用刚才注册的 JetBrains Account 帐号登录，应该会显示申请到的学生授权效期</p>
+
+<p>。注意：如果授权下方显示蓝色按钮“Please review License Agreement”，表示之前没有完成同意授权条款的步骤，请点击此按钮完成同意授权的步骤才能取得学生授权。</p>
+<h3 id="安装">安装</h3>
+<p>解压：sudo tar -zxvf ideaIU-2016.3.3-no-jdk.tar.gz -C /opt</p>
+
+<p>进入安装位置 cd /opt/idea-IU-163.11103.6/bin</p>
+
+<p>启动idea ./idea.sh</p>
+
+<p>造成这种情况的原因是将Tomcat放到/opt或其它系统目录下了，解决方案是</p>
+
+<p>打开终端，进入到Tomcat的上一级目录里面，如Tocat目录在/opt/Tomcat</p>
+
+<p>在终端输入命令 sudo chmod -R 777 /opt/Tomcat,那么Tomcat文件夹和它下面的所有子文件夹的属性都变成了777（读/写/执行权限）</p>
 
 		  </article>
 		<hr>
@@ -87,16 +96,16 @@ sudo apt-get install google-chrome-stable
 	  
 	  <span class="next">
 	    上篇：
-	    <a href="/2018/04/18/LaTeX%E5%AE%89%E8%A3%85.html">
-	      Ubuntu下LaTeX的安装
+	    <a href="/2018/05/12/chrome-%E5%AE%89%E8%A3%85.html">
+	      Chrome 安装
 	    </a>
 	  </span>
 	   
 	  
 	  <span class="prev">
 	    下篇：
-	    <a href="/2018/05/12/idea%E5%AE%89%E8%A3%85.html">
-	      idea 安装
+	    <a href="/2018/05/23/ubuntu-%E6%A0%BC%E5%BC%8F-U%E7%9B%98.html">
+	      ubuntu格式化u盘
 	    </a>
 	  </span>
 	  

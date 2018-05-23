@@ -1,0 +1,16 @@
+---
+layout: post
+title:  ubuntu格式化u盘
+---
+查看磁盘分区详细情况，同时确定U盘分区
+```
+ sudo fdisk -l
+```
+卸载U盘分区 
+```
+sudo umount /dev/sdb
+```
+格式化后为FAT
+```
+sudo mkfs.vfat /dev/sdb -I
+```

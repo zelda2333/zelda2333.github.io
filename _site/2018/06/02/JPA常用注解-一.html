@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+ 　　<html>
+ 　　<head>
+  　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  　　　　<title>JPA常用注解（一）</title>
+  <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS 
+    <link href="/css/blog.css" rel="stylesheet">-->
+    <!-- index css -->
+    <link href="/css/index.css" rel="stylesheet">
+	<!-- pagments CSS-->
+	<link href="/css/pygments.css" rel="stylesheet">
+ 　　</head>
+ 　<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+          <a class="navbar-brand" href="/index.html">
+            
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+    
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <!-- Blog Post -->
+<!-- Title -->
+<div class="row">
+  <div class="post-area post">
+
+ 	<div class="post-list-body">
+        	<div class="all-posts" post-cate="All">
+ 		<header>
+		<h1>
+		  JPA常用注解（一）
+		  <div class="post-date"><a href="https://github.com//.github.io/edit/master/_posts/2018-06-02-JPA常用注解（一）.mkd" target="_blank">纠错</a>&nbsp;&nbsp;
+			<span class="glyphicon glyphicon-time"></span>
+			02 Jun 2018
+		  </div>
+		</h1>
+ 		</header>
+		<!-- Author -->
+		<hr>
+		 <article>
+		<h3 id="column-注释">@Column 注释</h3>
+<p>@Column注解来标识实体类中属性与数据表中字段的对应关系。<br />
+@Column注解一共有10个属性，均为可选属性。</p>
+<ol>
+  <li><strong>name</strong><br />
+定义了被标注字段在数据库表中所对应字段的名称；</li>
+  <li><strong>unique</strong><br />
+该字段是否为唯一标识，默认为false。如果表中有一个字段需要唯一标识，则既可以使用该标记，也可以使用@Table标记中的@UniqueConstraint。</li>
+  <li><strong>nullable</strong><br />
+nullable属性表示该字段是否可以为null值，默认为true。</li>
+  <li><strong>insertable</strong><br />
+insertable属性表示在使用“INSERT”脚本插入数据时，是否需要插入该字段的值。</li>
+  <li><strong>updatable</strong><br />
+updatable属性表示在使用“UPDATE”脚本插入数据时，是否需要更新该字段的值。insertable和updatable属性一般多用于只读的属性，例如主键和外键等。这些字段的值通常是自动生成的。</li>
+  <li><strong>columnDefinition</strong><br />
+columnDefinition属性表示创建表时，该字段创建的SQL语句，一般用于通过Entity生成表定义时使用。（也就是说，如果DB中表已经建好，该属性没有必要使用。）</li>
+  <li><strong>table</strong><br />
+table属性定义了包含当前字段的表名。</li>
+  <li><strong>length</strong><br />
+length属性表示字段的长度，当字段的类型为varchar时，该属性才有效，默认为255个字符。</li>
+  <li><strong>precision 和 scale</strong><br />
+precision属性和scale属性表示精度，当字段类型为double时，precision表示数值的总长度，scale表示小数点所占的位数。<br />
+ps:此标记可以标注在<strong>getter方法或属性前</strong><br />
+API文档地址： http://docs.oracle.com/javaee/5/api/javax/persistence/Column.html</li>
+</ol>
+
+<h3 id="table-注释">@Table 注释</h3>
+<p>当实体类与其映射的数据库表名不同名时需要使用 @Table 标注说明，该标注与 @Entity 标注并列使用，置于实体类声明语句之前，可写于单独语句行，也可与声明语句同行。<br />
+@Table注解一共有4个属性</p>
+<ol>
+  <li><strong>name</strong><br />
+ 指明数据库的表名,若不指定则以实体类名称作为表名。</li>
+  <li><strong>catalog 和 schema</strong><br />
+ 用于设置表所属的数据库目录或模式，通常为数据库名。<br />
+ 当catalog属性不指定时，新创建的表将出现在url指定的数据库实例中<br />
+ 当catalog属性设置名称时，若数据库存在和指定名称一致的实例，新创建的表将出现在该实例中</li>
+  <li><strong>uniqueConstraints</strong><br />
+ 用于设置约束条件，通常不须设置。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> @Table(name="CUSTOMERS",uniqueConstraints={@UniqueConstraint(columnNames={"name"})})
+ @Entity
+ public class Customer {
+ private Integer id;
+ private String name;
+ private String email;
+ private int age;
+ ......
+ }
+    
+</code></pre></div>    </div>
+    <p>uniqueConstraints={@UniqueConstraint(columnNames={“name”})} 表示name列的值不能重复</p>
+  </li>
+</ol>
+
+<h3 id="generatedvalue-注释">@GeneratedValue 注释</h3>
+<ol>
+  <li><strong>@Id</strong><br />
+ @Id 标注用于声明一个实体类的属性映射为数据库的主键列。</li>
+  <li><strong>@GeneratedValue</strong><br />
+ @GeneratedValue 用于标注主键的生成策略，通过strategy 属性指定。<br />
+ 默认情况下，JPA 自动选择一个最适合底层数据库的主键生成策略：SqlServer对应identity，MySQL 对应 auto increment。<br />
+ 在javax.persistence.GenerationType中定义了以下几种可供选择的策略：<br />
+ –IDENTITY：主键由数据库自动生成（主要是自动增长型） ，Oracle 不支持；<br />
+ –AUTO： 默认；<br />
+ –SEQUENCE：通过序列产生主键，通过@SequenceGenerator 注解指定序列名，MySql不支持这种方式<br />
+ –TABLE：通过表产生主键，框架借由表模拟序列产生主键，使用该策略可以使应用更易于数据库移植。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> @Entity
+ @Table(name = "book")
+ public class Book {
+ @Id
+ @GeneratedValue(strategy = GenerationType.IDENTITY)//id自增长
+ @Column(name = "id")
+ private String id;
+ @Column(name = "name")
+ private String name;
+ @Column(name = "author")
+ private String author;
+ ...
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+
+		  </article>
+		<hr>
+	<br/>
+       
+	<div style="margin-top:10px;margin-bottom:10px">
+	  
+	  <span class="next">
+	    上篇：
+	    <a href="/2018/05/23/ubuntu-%E6%A0%BC%E5%BC%8F-U%E7%9B%98.html">
+	      ubuntu格式化u盘
+	    </a>
+	  </span>
+	   
+	  
+	</div>
+	</div>
+	
+        
+	 </div>
+
+</div>
+
+> 
+</div>
+
+        </div>
+      <hr>
+      
+    </div>
+    <!-- /.container -->
+  </body>
+</html>
+

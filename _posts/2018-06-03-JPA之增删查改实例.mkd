@@ -1,0 +1,137 @@
+---
+layout: post
+title:  JPA之增删查改实例
+---
+
+### 对新增女生进行年龄限制
+package: Entity  
+Girl.java
+```
+@Entity
+public class Girl {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private BigInteger id;
+    private String name;
+    /*为Girl对象的年龄添加注解*/
+    @Min(value = 18,message = "未成年少女禁止入门")
+    private String age;
+    private String cupSize;
+         ...
+    getter()
+    setter()
+    toString()
+```
+package: Controller  
+GirlController.java
+```
+@RequestMapping(value = "/girls")
+public class GirlController {
+    @Autowired
+    private GirlService girlService;
+
+    @PostMapping("")
+    /*@Valid表示验证Girl对象
+    * 将返回结果传给 BindingResult
+    * */
+    public void saveGirl(@Valid Girl girl, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            /*验证未通过,打印错误信息*/
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+        }
+        girlService.saveGirl(girl);
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

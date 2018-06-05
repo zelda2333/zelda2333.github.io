@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+ 　　<html>
+ 　　<head>
+  　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  　　　　<title>JPA常用注解(二)</title>
+  <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS 
+    <link href="/css/blog.css" rel="stylesheet">-->
+    <!-- index css -->
+    <link href="/css/index.css" rel="stylesheet">
+	<!-- pagments CSS-->
+	<link href="/css/pygments.css" rel="stylesheet">
+ 　　</head>
+ 　<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+          <a class="navbar-brand" href="/index.html">
+            
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+    
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <!-- Blog Post -->
+<!-- Title -->
+<div class="row">
+  <div class="post-area post">
+
+ 	<div class="post-list-body">
+        	<div class="all-posts" post-cate="All">
+ 		<header>
+		<h1>
+		  JPA常用注解(二)
+		  <div class="post-date"><a href="https://github.com//.github.io/edit/master/_posts/2018-06-02-JPA常用注解（二）.mkd" target="_blank">纠错</a>&nbsp;&nbsp;
+			<span class="glyphicon glyphicon-time"></span>
+			02 Jun 2018
+		  </div>
+		</h1>
+ 		</header>
+		<!-- Author -->
+		<hr>
+		 <article>
+		<h3 id="controller--service--repository--component">@Controller &amp; @Service &amp; @Repository &amp; @Component</h3>
+<p>@Component来表示一个通用注释用于说明一个类是一个Spring容器管理的类。即该类已经拉入到Spring的管理中了。<br />
+@Controller, @Service, @Repository是@Component的细化，这三个注解比@Component带有更多的语义，它们分别对应了控制层、服务层、持久层的类。<br />
+可以把这些当做<strong>分类标签</strong>，可使读性更强</p>
+
+<h3 id="controller">@Controller</h3>
+<p>处理http请求</p>
+<h3 id="restcontroller">@RestController</h3>
+<p>Spring4之后的新注解，原来返回json需要@ResonseBody配合@Controller使用</p>
+<h3 id="requestmapping">@RequestMapping</h3>
+<p>配置url映射</p>
+<h3 id="autowired">@Autowired</h3>
+<p>对类成员变量、方法及构造函数进行标注，完成自动装配的工作。<br />
+通过 @Autowired的使用来消除 set ，get方法。</p>
+<h3 id="transactional">@Transactional</h3>
+<p>除了查询操作，最好所有的操作都加入@Transactional注解，保证事务的一致性。
+即遇到异常时，保证两个用户同时添加成功或者同时失败</p>
+
+		  </article>
+		<hr>
+	<br/>
+       
+	<div style="margin-top:10px;margin-bottom:10px">
+	  
+	  <span class="next">
+	    上篇：
+	    <a href="/2018/06/02/JPA%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3-%E4%B8%80.html">
+	      JPA常用注解（一）
+	    </a>
+	  </span>
+	   
+	  
+	  <span class="prev">
+	    下篇：
+	    <a href="/2018/06/03/JPA%E4%B9%8B%E5%A2%9E%E5%88%A0%E6%9F%A5%E6%94%B9%E5%AE%9E%E4%BE%8B.html">
+	      JPA之增删查改实例
+	    </a>
+	  </span>
+	  
+	</div>
+	</div>
+	
+        
+	 </div>
+
+</div>
+
+> 
+</div>
+
+        </div>
+      <hr>
+      
+    </div>
+    <!-- /.container -->
+  </body>
+</html>
+

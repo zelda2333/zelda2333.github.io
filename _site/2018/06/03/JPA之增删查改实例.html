@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+ 　　<html>
+ 　　<head>
+  　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  　　　　<title>JPA之增删查改实例</title>
+  <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS 
+    <link href="/css/blog.css" rel="stylesheet">-->
+    <!-- index css -->
+    <link href="/css/index.css" rel="stylesheet">
+	<!-- pagments CSS-->
+	<link href="/css/pygments.css" rel="stylesheet">
+ 　　</head>
+ 　<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+          <a class="navbar-brand" href="/index.html">
+            
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+    
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <!-- Blog Post -->
+<!-- Title -->
+<div class="row">
+  <div class="post-area post">
+
+ 	<div class="post-list-body">
+        	<div class="all-posts" post-cate="All">
+ 		<header>
+		<h1>
+		  JPA之增删查改实例
+		  <div class="post-date"><a href="https://github.com//.github.io/edit/master/_posts/2018-06-03-JPA之增删查改实例.mkd" target="_blank">纠错</a>&nbsp;&nbsp;
+			<span class="glyphicon glyphicon-time"></span>
+			03 Jun 2018
+		  </div>
+		</h1>
+ 		</header>
+		<!-- Author -->
+		<hr>
+		 <article>
+		<h3 id="对新增女生进行年龄限制">对新增女生进行年龄限制</h3>
+<p>package: Entity<br />
+Girl.java</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Entity
+public class Girl {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private BigInteger id;
+    private String name;
+    /*为Girl对象的年龄添加注解*/
+    @Min(value = 18,message = "未成年少女禁止入门")
+    private String age;
+    private String cupSize;
+         ...
+    getter()
+    setter()
+    toString()
+</code></pre></div></div>
+<p>package: Controller<br />
+GirlController.java</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@RequestMapping(value = "/girls")
+public class GirlController {
+    @Autowired
+    private GirlService girlService;
+
+    @PostMapping("")
+    /*@Valid表示验证Girl对象
+    * 将返回结果传给 BindingResult
+    * */
+    public void saveGirl(@Valid Girl girl, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            /*验证未通过,打印错误信息*/
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+        }
+        girlService.saveGirl(girl);
+    }
+}
+</code></pre></div></div>
+
+
+		  </article>
+		<hr>
+	<br/>
+       
+	<div style="margin-top:10px;margin-bottom:10px">
+	  
+	  <span class="next">
+	    上篇：
+	    <a href="/2018/06/02/JPA%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3-%E4%BA%8C.html">
+	      JPA常用注解(二)
+	    </a>
+	  </span>
+	   
+	  
+	  <span class="prev">
+	    下篇：
+	    <a href="/2018/06/03/article.html">
+	      Article
+	    </a>
+	  </span>
+	  
+	</div>
+	</div>
+	
+        
+	 </div>
+
+</div>
+
+> 
+</div>
+
+        </div>
+      <hr>
+      
+    </div>
+    <!-- /.container -->
+  </body>
+</html>
+

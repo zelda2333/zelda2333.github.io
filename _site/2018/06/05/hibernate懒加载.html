@@ -2,7 +2,7 @@
  　　<html>
  　　<head>
   　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  　　　　<title>JPA之增删查改实例</title>
+  　　　　<title>hibernate懒加载</title>
   <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS 
@@ -52,55 +52,23 @@
         	<div class="all-posts" post-cate="All">
  		<header>
 		<h1>
-		  JPA之增删查改实例
-		  <div class="post-date"><a href="https://github.com//.github.io/edit/master/_posts/2018-06-03-JPA之增删查改实例.mkd" target="_blank">纠错</a>&nbsp;&nbsp;
+		  hibernate懒加载
+		  <div class="post-date"><a href="https://github.com//.github.io/edit/master/_posts/2018-06-05-hibernate懒加载.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
-			03 Jun 2018
+			05 Jun 2018
 		  </div>
 		</h1>
  		</header>
 		<!-- Author -->
 		<hr>
 		 <article>
-		<h3 id="对新增女生进行年龄限制">对新增女生进行年龄限制</h3>
-<p>package: Entity<br />
-Girl.java</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Entity
-public class Girl {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
-    private String name;
-    /*为Girl对象的年龄添加注解*/
-    @Min(value = 18,message = "未成年少女禁止入门")
-    private String age;
-    private String cupSize;
-         ...
-    getter()
-    setter()
-    toString()
-</code></pre></div></div>
-<p>package: Controller<br />
-GirlController.java</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@RequestMapping(value = "/girls")
-public class GirlController {
-    @Autowired
-    private GirlService girlService;
+		<p>懒加载（lazy）即<strong>延迟加载</strong>，当访问数据量过大时，用缓存不太合适，因为内容容量有限，为减少并发和系统资源消耗，我们让<strong>数据</strong>在<strong>需要的时候才进行加载</strong>，这是，就需要懒加载。</p>
 
-    @PostMapping("")
-    /*@Valid表示验证Girl对象
-    * 将返回结果传给 BindingResult
-    * */
-    public void saveGirl(@Valid Girl girl, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            /*验证未通过,打印错误信息*/
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-        }
-        girlService.saveGirl(girl);
-    }
-}
-</code></pre></div></div>
+<p>关于JAP FetchType.LAZY（hibernate实现）的理解 
+https://blog.csdn.net/zgmzyr/article/details/8062004</p>
 
+<p>什么是hibernate懒加载？什么时候用懒加载？为什么要用懒加载？（转）
+https://www.cnblogs.com/cornucopia/articles/4541621.html</p>
 
 		  </article>
 		<hr>
@@ -110,16 +78,16 @@ public class GirlController {
 	  
 	  <span class="next">
 	    上篇：
-	    <a href="/2018/06/02/JPA%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3-%E4%BA%8C.html">
-	      JPA常用注解(二)
+	    <a href="/2018/06/05/JoinColumn.html">
+	      JoinColumn注释
 	    </a>
 	  </span>
 	   
 	  
 	  <span class="prev">
 	    下篇：
-	    <a href="/2018/06/05/JoinColumn.html">
-	      JoinColumn注释
+	    <a href="/2019/03/14/TwoSum.html">
+	      TwoSum
 	    </a>
 	  </span>
 	  

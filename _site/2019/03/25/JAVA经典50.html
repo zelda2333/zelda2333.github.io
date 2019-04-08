@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+ 　　<html>
+ 　　<head>
+  　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  　　　　<title>Java经典算法50题</title>
+  <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS 
+    <link href="/css/blog.css" rel="stylesheet">-->
+    <!-- index css -->
+    <link href="/css/index.css" rel="stylesheet">
+	<!-- pagments CSS-->
+	<link href="/css/pygments.css" rel="stylesheet">
+ 　　</head>
+ 　<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+          <a class="navbar-brand" href="/index.html">
+            
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+    
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <!-- Blog Post -->
+<!-- Title -->
+<div class="row">
+  <div class="post-area post">
+
+ 	<div class="post-list-body">
+        	<div class="all-posts" post-cate="All">
+ 		<header>
+		<h1>
+		  Java经典算法50题
+		  <div class="post-date"><a href="https://github.com//.github.io/edit/master/_posts/2019-03-25-JAVA经典50.mkd" target="_blank">纠错</a>&nbsp;&nbsp;
+			<span class="glyphicon glyphicon-time"></span>
+			25 Mar 2019
+		  </div>
+		</h1>
+ 		</header>
+		<!-- Author -->
+		<hr>
+		 <article>
+		<h4 id="题目1">[题目1]</h4>
+<p>古典问题：有一对兔子，从出生后第3个月起每个月都生一对兔子，小兔子长到第三个月后每个月又生一对兔子，假如兔子都不死，问每个月的兔子总数为多少？ <br />
+//这是一个菲波拉契数列问题</p>
+
+<p>1月：1（对）</p>
+
+<p>2月：1</p>
+
+<p>3月：1+1 = 2</p>
+
+<p>4月：2+1 = 3</p>
+
+<p>5月：3+1 + 1 = 5</p>
+
+<p>6月：4+1 + 1 + 1+1 = 8</p>
+
+<p>…</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Rabit1 {
+	public static void main(String [] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter the Month:");
+		int month = input.nextInt();
+		System.out.println("the Rabits: " + NumOfRabit(month));
+	}
+	
+	public static int NumOfRabit(int month) {
+		if(month &lt; 3) {
+			return 2;
+		}else {
+			return NumOfRabit(month - 1) + NumOfRabit(month - 2);
+		}
+	} 
+}
+
+</code></pre></div></div>
+
+<h4 id="题目2">[题目2]</h4>
+<p>判断101-200之间有多少个素数，并输出所有素数。</p>
+
+<p>程序分析：
+素数：一个大于1的自然数，除了1和它本身外，不能被其他自然数整除。
+判断素数的方法：用一个数分别去除2到sqrt(这个数)，如果能被整除， 则表明此数不是素数，反之是素数。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class PrimeNumber2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		
+		for(int n = 101; n &lt; 200; n++) {
+			boolean flag = true;
+			for(int m = 2;m &lt; Math.sqrt(n);m++) {
+				if((n % m) == 0) {
+					flag = false;			
+				}	
+			}
+			if(flag) {
+				count++;	
+				System.out.println(n);
+			}
+			
+	 }
+		System.out.println("count :" + count);
+		
+	}
+
+}
+
+</code></pre></div></div>
+
+<h4 id="程序3">[程序3]</h4>
+<p>题目：打印出所有的 “水仙花数 “，所谓 “水仙花数 “是指一个三位数，其各位数字立方和等于该数本身。例如：153是一个 “水仙花数 “，因为153=1的三次方＋5的三次方＋3的三次方。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Flower3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		for(int n = 101; n &lt; 1000; n++) {
+			int a = n / 100;
+			int b = (n / 10) % 10;
+			int c = n % 10;
+			
+			if(a * a * a + b * b * b + c * c * c == n) {
+				System.out.println(n);
+			}
+		}
+	}
+
+}
+</code></pre></div></div>
+
+<h4 id="程序4">[程序4]</h4>
+<p>题目：将一个正整数分解质因数。例如：输入90,打印出90=2<em>3</em>3*5。 
+ 程序分析：对n进行分解质因数，应先找到一个最小的质数k，然后按下述步骤完成： <br />
+(1)如果这个质数恰等于n，则说明分解质因数的过程已经结束，打印出即可。 <br />
+(2)如果n &lt;&gt; k，但n能被k整除，则应打印出k的值，并用n除以k的商,作为新的正整数你n,重复执行第一步。 <br />
+(3)如果n不能被k整除，则用k+1作为k的值,重复执行第一步。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class CommonNumber4 {
+	public static void main(String [] args) {
+		System.out.println("Enter the number 计算 公约数：");
+		Scanner input = new Scanner(System.in);
+		int number = input.nextInt();	
+		int common = 2;
+		
+		while(common &lt;= number) {
+			if(number % common ==0) {
+				System.out.println(common);
+				number = number / common;
+			}else {
+				common++;
+			}
+		}
+	}
+}
+</code></pre></div></div>
+
+<h4 id="程序6">[程序6]</h4>
+<p>题目：输入两个正整数m和n，求其最大公约数和最小公倍数。 <br />
+/<em>*在循环中，只要除数不等于0，用较大数除以较小的数，将小的一个数作为下一轮循环的大数，取得的余数作为下一轮循环的较小的数，如此循环直到较小的数的值为0，返回较大的数，此数即为最大公约数，最小公倍数为两数之积除以最大公约数。</em> /</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class CommDivMul6 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		/**在循环中，只要除数不等于0，用较大数除以较小的数，
+		 * 将小的一个数作为下一轮循环的大数，取得的余数作为下一轮循环的较小的数，
+		 * 如此循环直到较小的数的值为0，返回较大的数，此数即为最大公约数，
+		 * 最小公倍数为两数之积除以最大公约数。
+		 */
+		System.out.println("Enter two numbers， compute the Common Divsible Common Multiple.");
+		Scanner input = new Scanner(System.in);
+		int m = input.nextInt();
+		int n = input.nextInt();
+		System.out.println("公约数： " + CommonDiv(m, n));
+		System.out.println("公倍数： " + (m * n / CommonDiv(m, n)));
+	}
+	public static int CommonDiv(int a, int b) {
+		//假设a大
+		if(b&gt;a) {
+			int t = a;
+			a = b;
+			b = t;
+		}
+		while(b!=0) {
+			int x = b;
+			b = a % b;
+			a = x; 			
+		}		
+		return a;
+	}
+}
+</code></pre></div></div>
+
+<h4 id="程序7">[程序7]</h4>
+<p>题目：输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Figures7 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Enter a line including letters, space, digits and others: ");
+		Scanner input = new Scanner(System.in);
+		String line = input.nextLine();
+		
+		int lettersCount = 0;
+		int spacesCount = 0;
+		int digitsCount = 0;
+		int othersCount = 0;
+		
+		char [] linechar = line.toCharArray();
+		
+		for(int i = 0; i &lt; linechar.length; i++) {
+			if(Character.isDigit(linechar[i])) {
+				digitsCount++;
+			}else if(Character.isLetter(linechar[i])) {
+				lettersCount++;
+			}else if(Character.isSpaceChar(linechar[i])) {
+				spacesCount++;
+			}else {
+				othersCount++;
+			}
+		}
+		System.out.println("digits:" + digitsCount);
+		System.out.println("lettersCount:" + lettersCount);
+		System.out.println("spacesCount:" + spacesCount);
+		System.out.println("othersCount:" + othersCount);
+	}
+
+}
+</code></pre></div></div>
+
+<h4 id="程序8">[程序8]</h4>
+<p>题目：求s=a+aa+aaa+aaaa+aa…a的值，其中a是一个数字。例如2+22+222+2222+22222(此时共有5个数相加)，几个数相加有键盘控制。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class AddAA8 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("digit &amp; n ");
+		
+		Scanner input = new Scanner(System.in);
+		int digit = input.nextInt();
+		int n = input.nextInt();
+		System.out.println("sum :" +sum(digit, n));
+	}
+	
+	public static int sum(int digit, int n) {
+		int sum = 0;
+		int a = 0;
+		for(int i = 0; i &lt; n; i++) {
+			a += digit;
+			digit *= 10;
+			sum += a;
+		}		
+		return sum;
+	}
+
+}
+</code></pre></div></div>
+
+<h4 id="程序9">[程序9]</h4>
+<p>题目：一个数如果恰好等于它的因子之和，这个数就称为 “完数 “。例如6=1＋2＋3.编程     找出1000以内的所有完数。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class AddDiv9 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		for(int n = 1; n &lt;= 1000; n++) {
+			int t = 0;
+			for(int i = 1; i &lt;= n/2; i++) {
+				if(n%i == 0) {
+					t += i;
+				}
+			}
+			if(t == n) {
+				System.out.println(n);
+			}			
+		}
+	}
+}
+</code></pre></div></div>
+
+<h4 id="程序10">[程序10]</h4>
+<p>题目：一球从100米高度自由落下，每次落地后反跳回原高度的一半；再落下，求它在 第10次落地时，共经过多少米？第10次反弹多高？</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Hight10 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		double h=100;
+		double s=100;
+		int i = 1;
+		while(i&lt;=10) {		
+		s=s+2*h*(i-1);
+		h=h/2;
+		i++;
+		}
+		System.out.println(s);
+		System.out.println(h);
+	}
+}
+</code></pre></div></div>
+
+<h4 id="程序11">[程序11]</h4>
+<p>题目：有1、2、3、4四个数字，能组成多少个互不相同且一个数字中无重复数字的三位数？并把他们都输入。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ThreeNumber11 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		int number = 0;
+		for(int i = 1; i &lt;= 4; i++) {
+			for(int j = 1; j &lt;= 4; j++) {
+				for(int k = 1; k &lt;= 4; k++) {
+					if(i != j &amp;&amp; i !=k &amp;&amp; j != k) {
+						count++;
+						number = i * 100 + j * 10 + k;
+						System.out.println(number);
+					}
+				}		
+			}
+		}
+		System.out.println("count: " + count);
+	}
+
+}
+</code></pre></div></div>
+
+<h4 id="程序13">[程序13]</h4>
+<p>题目：一个整数，它加上100后是一个完全平方数，再加上168又是一个完全平方数，请问该数是多少？</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class SpecialNumber13 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub	
+		for(int i = -100; i &lt; 10000; i++) {
+			if(Math.sqrt(i+100) % 1 == 0 &amp;&amp; Math.sqrt(i + 268) % 1 ==0) {
+				System.out.println(i);
+			}
+		}
+
+	}
+}
+</code></pre></div></div>
+
+<h4 id="程序14">[程序14]</h4>
+<p>题目：输入某年某月某日，判断这一天是这一年的第几天？ <br />
+    闰年:能被4整除但不能被100整除的年份为普通闰年;或者能被400整除。（２月有２９天）</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Month14 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Enter the year:");
+		int year = input.nextInt();
+		System.out.println("Enter the month:");
+		int month = input.nextInt();
+		System.out.println("Enter the day:");
+		int day = input.nextInt();
+		
+		int days = 0;
+		int d = 0;
+		for(int i = 1; i &lt; month; i++) {
+			switch(i){
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				days = 31;
+				break;
+			case 2:
+				if(IsRunYear(year)) {
+					days = 29;
+				}else {
+					days = 28;
+				}
+				break;
+			default: days = 30;
+				
+			}
+			d +=days;
+		}
+		int Day = d + day;
+		System.out.println("第几天: " + Day); 
+		
+		
+		
+	}
+	public static boolean IsRunYear(int year) {
+		if((year % 4 ==0 &amp;&amp; year % 100 != 0) || (year % 400 == 0)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序17">[程序17]</h4>
+<p>题目：猴子吃桃问题：猴子第一天摘下若干个桃子，当即吃了一半，还不瘾，又多吃了一个     第二天早上又将剩下的桃子吃掉一半，又多吃了一个。以后每天早上都吃了前一天剩下     的一半零一个。到第10天早上想再吃时，见只剩下一个桃子了。求第一天共摘了多少。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Monkey17 {
+	public static void main(String [] args) {
+		int x = 1;
+		for(int i = 10 ; i &gt; 1; i--) {
+			x = (x + 1) * 2;
+		}
+		System.out.println(x);
+	}
+}
+</code></pre></div></div>
+<h4 id="程序18">[程序18]</h4>
+<p>题目：两个乒乓球队进行比赛，各出三人。甲队为a,b,c三人，乙队为x,y,z三人。已抽签决定比赛名单。有人向队员打听比赛的名单。a说他不和x比，c说他不和x,z比，请编程序找出三队赛手的名单。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class PingPang18 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub		
+		for(char a='x';a&lt;='z';a++) {
+			for (char b='x';b&lt;='z';b++) {
+			if(a!=b) {
+			for(char c='x';c&lt;='z';c++) {
+			if(a!=c&amp;&amp;b!=c) {
+			if(a!='x'&amp;&amp;c!='x'&amp;&amp;c!='z') {
+			System.out.println("a:"+a+"\nb:"+b+"\nc:"+c);
+			}
+			}
+			}
+			}
+			}
+			}
+	}
+}
+</code></pre></div></div>
+<h4 id="程序19">[程序19]</h4>
+<p>题目：打印出如下图案（菱形） <br />
+<img src="/images/stars.png" alt="" /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Shap19 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 int H = 7, W = 7;//高和宽必须是相等的奇数
+		  for(int i=1; i&lt;=(H+1)/2; i++) {
+			  for(int j=1; j&lt;=(W+1)/2-i; j++) {
+				  System.out.print(" ");
+			  }
+			  for(int k=1; k&lt;=2*i-1; k++) {
+				  System.out.print("*");
+			  }
+			  System.out.println();
+		  }
+		  
+
+		  for(int i=1; i&lt;=H/2; i++) {
+			  for(int j=1; j&lt;=i; j++) {
+				  System.out.print(" ");
+			  }
+			  for(int k=1; k&lt;=W-2*i; k++) {
+				  System.out.print('*');
+			  }
+			  System.out.println("");
+		  }
+	 
+	}
+}	
+</code></pre></div></div>
+<h4 id="程序20">[程序20]</h4>
+<p>题目：有一分数序列：2/1，3/2，5/3，8/5，13/8，21/13…求出这个数列的前20项之和。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class AddTwenty20 {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		double sum = 0.0;
+		double big = 2;
+		double small = 1;
+		double t;
+		for(int i = 0; i &lt; 20; i++) {
+			sum += big / small;
+			t = big;
+			big += small;
+			small = t;
+			
+		}
+		System.out.println(sum);
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序21">[程序21]</h4>
+<p>题目：求1+2!+3!+…+20!的和</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class AddTwentyth21 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		long sum=0,mul=1;
+		for(int i=1;i&lt;=20;i++) {
+		mul *= i;
+		sum += mul;
+		}
+		System.out.println(sum);
+	}
+}
+</code></pre></div></div>
+
+<h4 id="程序22">[程序22]</h4>
+<p>题目：利用递归方法求5!。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Fifth22 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(fac(5));
+	}
+	public static int fac(int i) {
+		if(i==1) return 1;
+		else {
+			return i*fac(i-1);
+		}
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序24">[程序24]</h4>
+<p>题目：给一个不多于5位的正整数，要求：一、求它是几位数，二、逆序打印出各位数字。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class REBMUN24 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("print a num(the length &lt; 5)：");
+		Scanner input = new Scanner(System.in);
+		String number = input.nextLine();
+		char [] num = number.toCharArray();
+		
+		System.out.println("整数长度为：" + num.length);
+		for(int i = num.length; i &gt;0; i--) {
+			System.out.print(num[i-1]);
+		}
+	}
+}
+</code></pre></div></div>
+<h4 id="程序25">[程序25]</h4>
+<p>题目：一个5位数，判断它是不是回文数。即12321是回文数，个位与万位相同，十位与千位相同。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class AABAA25 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("输入一个5位数，判断它是不是回文数：");
+		Scanner input = new Scanner(System.in);
+		String number = input.nextLine();
+		int count = 0;
+		char [] num = number.toCharArray();
+		
+		for(int i = 1; i &lt;= (num.length + 1) / 2; i++) {
+			if(num[i-1]==num[num.length - i]) {
+				count++;
+			}
+		}		
+		if(count == (num.length + 1) / 2) {
+			System.out.println("是回文");
+		}else {
+			System.out.println("不是回文");
+		}
+		
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序26">[程序26]</h4>
+<p>题目：请输入星期几的第一个字母来判断一下是星期几，如果第一个字母一样，则继续   判断第二个字母。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Weekday261 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("请输入星期的第一个大写字母：");
+		char ch = getChar();
+		switch(ch) {
+		case 'M':
+			System.out.println("Monday");
+			break;
+		case 'W':
+			System.out.println("Wednesday");
+			break;
+		case 'F':
+			System.out.println("Friday");
+			break;
+		case 'T':{
+			System.out.println("请输入星期的第二个字母：");
+			char ch2 = getChar();
+			if(ch2 == 'U'){
+				System.out.println("Tuesday"); 
+			}else if(ch2 == 'H') {
+				System.out.println("Thursday");
+			}else {
+				System.out.println("erro");
+			}
+		};
+			break;
+		case 'S':{
+			System.out.println("请输入星期的第二个字母：");
+			char ch2 = getChar();
+			if(ch2 == 'U'){
+				System.out.println("Sunday"); 
+			}
+			else if(ch2 == 'A'){
+				System.out.println("Saturday");
+			}
+			else {
+				System.out.println("无此写法！");
+			}
+		};
+			break;
+		default:System.out.println("无此写法！");
+			break;
+		}
+	}
+	public static char getChar() {
+		Scanner s = new Scanner(System.in);
+		String str = s.nextLine();
+		char ch = str.charAt(0);
+		if(ch&lt;'A' || ch&gt;'Z') {
+			System.out.println("输入错误，请重新输入");
+			ch=getChar();
+		}
+		return ch;
+	}
+}
+</code></pre></div></div>
+<h4 id="程序27">[程序27]</h4>
+<p>题目：求100之内的素数</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class AddPrime27 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("2");
+		boolean flag = true;
+		for(int n = 3; n &lt;= 100; n++) {
+			for(int i = 2; i &lt;= Math.sqrt(n); i++) {
+				if(n % i == 0) {
+					flag = false;
+					break;
+				}else {
+					flag = true;
+				}
+			}
+			if(flag) {
+				System.out.println(n);
+			}
+		}
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序28">[程序28]</h4>
+<p>题目：对10个数进行排序</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Sort28 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner(System.in);
+		int[] a = new int[10];
+		for(int i = 0; i &lt; 10; i++) {
+			a[i] = input.nextInt();
+		}
+		int[] b = sorty(a);
+		for(int i = 0; i &lt; 10; i++) {
+			System.out.print(b[i] + " ");
+		}
+	}
+	public static int[] sorty(int[] a) {
+		for(int i = 0; i &lt; a.length; i++) {
+			for(int j = 0; j &lt; a.length; j++) {
+				if(a[i] &lt; a[j]) {
+					int t = a[i];
+					a[i] = a[j];
+					a[j] = t;
+				}
+			}
+		}
+		
+		return a;
+	}
+
+}
+</code></pre></div></div>
+
+<h4 id="程序30">[程序30]</h4>
+<p>题目：有一个已经排好序的数组。现输入一个数，要求按原来的规律将它插入数组中。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Insert30 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("输入５个整数：");
+		Scanner input = new Scanner(System.in);
+		int[] a = new int[5];
+		for(int i = 0; i &lt; 5; i++) {
+			a[i] = input.nextInt();
+		}
+		Arrays.sort(a);
+		print(a, 5);
+		System.out.println("输入一个即将插入的数：");
+		int insertNum = input.nextInt();
+		int[] newArray = insertAndSort(a, insertNum);
+		print(newArray, 6);
+	}
+	
+	public static int[] insertAndSort(int[] a, int number) {
+		int[] c = new int[a.length + 1];
+		int count = 0;
+		
+		for(int i = 0; i &lt; a.length; i++) {
+			if(a[i] &lt; number) {
+				c[i] = a[i];
+				count++;
+			}else {
+				c[i] = number;
+				System.arraycopy(a, i, c, i+1, a.length - i);
+			}
+		}
+		if(count == a.length) {
+			c[a.length] = number;
+		}	
+		return c;
+	}
+	public static void print(int[] a, int num) {
+		for(int i = 0; i &lt; num; i++) {
+			System.out.print(a[i] + " ");
+		}
+		System.out.println("");
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序32">[程序32]</h4>
+<p>题目：取一个整数a从右端开始的4～7位。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class NumRight32 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("输入一个大于７位的整数：");
+		Scanner input = new Scanner(System.in);
+		String number = input.nextLine();
+		char[] ch = number.toCharArray();
+		System.out.println(ch[ch.length-7]+""+ch[ch.length-6]+""+ch[ch.length-5]+""+ch[ch.length-4]);
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序33">[程序33]</h4>
+<p>题目：打印出杨辉三角形（要求打印出10行如下图）</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Trangle33 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		/*１、先把杨辉三角前１０行存到二位数组里
+		 * ２、打印正确的空格格式以及杨辉三角的输出
+		 * */
+		int[][] trangle = new int[10][10];
+		trangle[0][0] = 1;
+		for(int n = 1; n &lt; 10; n++) {
+			trangle[n][0] = 1;
+			for(int i = 1; i &lt; 10; i++) {
+				trangle[n][i] = trangle[n - 1][i - 1] + trangle[n - 1][i];
+			}
+		}
+		for(int n = 0; n &lt; 10; n++) {
+			for(int i = 0; i &lt; 10-n; i++) {
+				System.out.print(" ");
+			} 
+			for(int i = 0; i &lt;= n; i++) {
+				System.out.print(trangle[n][i] + " ");
+			}
+			
+			System.out.println();
+		}
+		
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序35">[程序35]</h4>
+<p>题目：输入数组，最大的与第一个元素交换，最小的与最后一个元素交换，输出数组。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ExchangArray35 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("输入一个数组，返回第一个是最大，最后一个是最小：");
+		Scanner input = new Scanner(System.in);
+		int[] num = new int[5];
+		
+		int minNum = 0, maxNum = 0, t = 0;	
+		for(int i = 0; i &lt; num.length; i++) {
+			num[i] = input.nextInt();	
+		}
+		int max = num[0];
+		int min = num[4];
+		for(int i = 0; i&lt; num.length; i++) {
+			if(max &lt;= num[i]) {
+				max= num[i];
+				maxNum = i;
+			
+			}
+		}
+		t = num[0];
+		num[0] = max;
+		num[maxNum] = t;
+		for(int i = 0 ; i &lt; num.length; i++) {			
+			if(min &gt;= num[i]){
+				min = num[i];
+				minNum = i;
+			}				
+		}
+		t= num[4];
+		num[4] = min;
+		num[minNum] = t;
+		for(int i = 0; i &lt; num.length; i++) {
+			System.out.print(num[i] + " ");	
+		}
+	}}
+</code></pre></div></div>
+<h4 id="程序36">[程序36]</h4>
+<p>题目：有n个整数，使其前面各数顺序向后移m个位置，最后m个数变成最前面的m个数</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class NumberMN36 {
+
+	public static void main(String[] args) {
+		// 1
+		int N = 6;
+		int M = 2;
+		Scanner input = new Scanner(System.in);
+		int[] a  = new int[N];
+		int[] c  = new int[M];
+		int num = N;
+		int mum = M;
+		int numn = N- M -1;
+		for(int i = 0; i &lt; a.length; i++) {
+			a[i] = input.nextInt();
+		}
+		for(int i = a.length; i &gt; N - M; i--) {
+			c[--mum] = a[--num];
+		}
+		for(int i=N-1;i&gt;=M;i--) {
+			a[i]=a[i-M];
+		}
+		
+		System.arraycopy(c, 0, a, 0, M);
+	
+		for(int i = 0; i &lt; a.length; i++) {
+			System.out.print(a[i] + " ");
+		}
+	} 	
+}
+</code></pre></div></div>
+<h4 id="程序37">[程序37]</h4>
+<p>题目：有n个人围成一圈，顺序排号。从第一个人开始报数（从1到3报数），凡报到3的人退出圈子，问最后留下的是原来第几号的那位。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class TgreeOut37 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("请输入围成圈的人数：");
+		Scanner input=new Scanner(System.in);
+		int n=input.nextInt();
+		ArrayList&lt;Integer&gt; group=new ArrayList&lt;Integer&gt;();
+		//1、给数组列表初始化数据
+		 for(int i=1;i&lt;=n;i++){
+			 group.add(i);
+		 }
+		 //2、报数
+		 int number=1;//第一个人报数为1
+		 //圈里的人循环报数
+		 for(int i=0;i&lt;n;i++){
+			 if(number==3){//当圈里第i+1个人报道的数是3
+				 group.remove(i);//圈里第i+1个人退出圈子
+				 i--;//下一个报数的人在数组列表中的下标值
+				 n--;//圈子的总人数减少1   
+				 number=0;//通过number++，下一个人报的数是1
+			 }
+			 number++;//报数时，每次加1 
+			 if(i==n-1){//当所有的人报完一圈
+				 i=-1;//下一次从圈里的第一个人报，通过for循环的i++,对应数组列表下标值为0
+			 }
+			 if(n==1){//如果整个圈子最后只剩下一人
+				 break;
+			 }
+		 }
+		 System.out.println("最后留下的是原来"+group.get(0)+"号的那位。");
+		}
+}
+</code></pre></div></div>
+<h4 id="程序40">[程序40]</h4>
+<p>题目：字符串排序。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class StringSort40 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner(System.in);
+		String[] strings = new String[5];
+		String temp;
+		for(int i = 0 ; i &lt; strings.length; i++) {
+			strings[i] = input.nextLine();
+		}
+		for(int i = 0; i &lt; strings.length; i++) {
+			for(int j = i + 1; j &lt; strings.length; j++) {
+				if(strings[i].compareTo(strings[j]) &gt;= 0) {
+					temp = strings[i];
+					strings[i] = strings[j];
+					strings[j] = temp;
+				}
+			}
+		}
+		for(int i = 0; i &lt; strings.length; i++) {
+			System.out.print(strings[i] + " ");
+		}
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序41">[程序41]</h4>
+<p>题目：海滩上有一堆桃子，五只猴子来分。第一只猴子把这堆桃子凭据分为五份，多了一个，这只猴子把多的一个扔入海中，拿走了一份。第二只猴子把剩下的桃子又平均分成五份，又多了一个，它同样把多的一个扔入海中，拿走了一份，第三、第四、第五只猴子都是这样做的，问海滩上原来最少有多少个桃子？</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Peach41 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int x=0,i=0,j=1;
+		 while(i&lt;5){
+			 x=5*j+1;
+			 for(i=1;i&lt;5;i++){ 
+				 if(x%4!=0){break;}
+				 x=(x/4)*5+1;
+			 }
+			 j++; 
+		}
+		 System.out.println(x);
+	}
+}
+</code></pre></div></div>
+<h4 id="程序43">[程序43]</h4>
+<p>题目：求0—7所能组成的奇数个数。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class OddNum43 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	int sum = 32;
+		for(int i = 3 ; i &lt;= 8; i++) {
+			sum += 7*4*(int)Math.pow(8, i-2);
+			System.out.println("i: "+i+"  sum:" + sum+"  ");
+		}
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序44">[程序44]</h4>
+<p>题目：一个偶数总能表示为两个素数之和。 <br />
+//由于用除sqrt(n)的方法求出的素数不包括2和3，
+//因此在判断是否是素数程序中人为添加了一个3。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class AddTwoPrime44 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Enter a even number(n &gt;= 6): ");
+		Scanner input = new Scanner(System.in);
+		
+		int n = input.nextInt();
+		for(int i = 3; i &lt;= n / 2; i++) {
+			if(IsPrime(i) &amp;&amp; IsPrime(n-i)) {
+				System.out.println( i + " + " + (n-i) + " = " + n);
+			}
+		}
+		
+	}
+	public static boolean IsPrime(int n) {
+		boolean flag = false;
+		if(n == 3) {
+			flag = true;
+		}
+		for(int i = 2; i &lt;= Math.sqrt(n); i++) {
+			if(n%i == 0) {
+				flag =  false;
+			}
+			else {
+				flag = true;
+			}
+		}
+		return flag;
+		
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序45">[程序45]</h4>
+<p>题目：判断一个整数数能被几个9整除</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class DivNine45 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Enter a number:");
+		Scanner input = new Scanner(System.in);
+		int n = input.nextInt();
+		int count = 0;
+		for(int i = n; n % 9 == 0; n /= 9 ) {
+			count++;
+		}
+		System.out.println(count);
+		
+	}
+
+}
+</code></pre></div></div>
+<h4 id="程序49">[程序49]</h4>
+<p>题目：计算字符串中子串出现的次数</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class StringNum49 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner s = new Scanner(System.in);
+		   /**
+				 * 思路二：使用子串来切割父串，根据结果数组长度获取次数
+				 * 		考虑特殊情况--&gt; 子串在末尾，要给截取结果数组长度加1
+				 */
+		String str = "www.baidu.com/www.sina.com";
+		String subStr = "ww";
+		int count = 0;
+		String[] arr = str.split(subStr);
+		int len = arr.length;
+		if(str.endsWith(subStr)) {
+			//如果子串在末尾
+			len ++;
+		}
+		count = len - 1;
+		System.out.println(subStr+"\n在"+str+"中出现的次数:"+count);
+	}
+
+}
+</code></pre></div></div>
+
+<p>参考资料： <a href="https://blog.csdn.net/YaoChung/article/details/80793691">CSDN Java经典算法50题</a></p>
+
+		  </article>
+		<hr>
+	<br/>
+       
+	<div style="margin-top:10px;margin-bottom:10px">
+	  
+	  <span class="next">
+	    上篇：
+	    <a href="/2019/03/14/TwoSum.html">
+	      TwoSum
+	    </a>
+	  </span>
+	   
+	  
+	</div>
+	</div>
+	
+        
+	 </div>
+
+</div>
+
+> 
+</div>
+
+        </div>
+      <hr>
+      
+    </div>
+    <!-- /.container -->
+  </body>
+</html>
+

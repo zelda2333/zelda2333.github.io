@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+ 　　<html>
+ 　　<head>
+  　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  　　　　<title>Ubuntu 安装Sublime3</title>
+  <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS 
+    <link href="/css/blog.css" rel="stylesheet">-->
+    <!-- index css -->
+    <link href="/css/index.css" rel="stylesheet">
+	<!-- pagments CSS-->
+	<link href="/css/pygments.css" rel="stylesheet">
+ 　　</head>
+ 　<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+          <a class="navbar-brand" href="/index.html">
+            
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+    
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <!-- Blog Post -->
+<!-- Title -->
+<div class="row">
+  <div class="post-area post">
+
+ 	<div class="post-list-body">
+        	<div class="all-posts" post-cate="All">
+ 		<header>
+		<h1>
+		  Ubuntu 安装Sublime3
+		  <div class="post-date"><a href="https://github.com//.github.io/edit/master/_posts/2019-06-04-Ubunutu 安装Sublime3.md" target="_blank">纠错</a>&nbsp;&nbsp;
+			<span class="glyphicon glyphicon-time"></span>
+			04 Jun 2019
+		  </div>
+		</h1>
+ 		</header>
+		<!-- Author -->
+		<hr>
+		 <article>
+		<h3 id="安装">安装</h3>
+<h4 id="官网下载">官网下载</h4>
+<p><a href="https://www.sublimetext.com/3">官网链接：https://www.sublimetext.com/3</a></p>
+
+<p>解压到 /opt 目录</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd /opt
+$ sudo tar jxvf　/home/zelda/Downloads/sublime_text_3_build_3143_x64.tar.bz2
+</code></pre></div></div>
+<p>解压后,进入”sublime_text_3”,运行”sublime_text”可执行文件</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./sublime_text
+</code></pre></div></div>
+
+<p>运行成功
+<img src="/images/sublime1.png" alt="" /></p>
+
+<h4 id="使用subl运行sublime">使用subl运行sublime</h4>
+<p>写一个名为”subl”的 SHELL 脚本文件, 内容如下:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<span class="nb">exec</span> /opt/sublime_text_3/sublime_text <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<p>修改权限,并把复制到 /usr/bin 目录下</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ chmod a+x subl
+$ cp subl /usr/bin/
+</code></pre></div></div>
+<h3 id="中文输入">中文输入</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/lyfeyaj/sublime-text-imfix.git
+cd sublime-text-imfix &amp;&amp; ./sublime-imfix
+</code></pre></div></div>
+<p>然后重启Sublime Text3即可</p>
+
+<h3 id="安装packeage-control">安装Packeage Control</h3>
+<h4 id="首选方法">首选方法</h4>
+<p>在终端输入subl打开sublime text3, 使用快捷键ctrl + `(ESC下面的键),在弹出的控制台中输出以下代码:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
+</code></pre></div></div>
+
+<p>待粘贴python代码的网址是：<a href="https://packagecontrol.io/installation">https://packagecontrol.io/installation</a>
+，根据是sublime text 3或者sublime text 2选择代码进行粘贴。
+  但是由于我的电脑无法FQ，因此会提示我网络不可达错误</p>
+
+<h4 id="手动安装">手动安装</h4>
+
+<p>从git下载Package  Control文件到~/.config/sublime-text-3/Packages/</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ~/.config/sublime-text-3/Packages/
+git clone https://github.com/wbond/package_control_channel.git
+</code></pre></div></div>
+
+<ol>
+  <li>点击Preferences &gt; Browse Packages菜单；</li>
+  <li>进入打开的目录的上层目录，然后再进入Installed Packages目录；</li>
+  <li>在<a href="https://sublime.wbond.net/Package%20Control.sublime-package">https://sublime.wbond.net/Package%20Control.sublime-package</a>下载Package Control.sublime-package，并将该文件复制到Installed Packages目录；</li>
+  <li>重启Sublime Text。</li>
+</ol>
+
+<p>验证package control安装成功：在菜单栏Preferences –&gt; Package Control调出Package Controller，输入Package Control：Install Package，观察左下角，会提示安装成功。</p>
+
+<h4 id="使用install-package出现there-are-no-packages-available-for-installation问题">使用Install Package出现There are no packages available for installation问题</h4>
+
+<p>分析原因发现，在利用sublime进行插件下载时，sublime会调用channel_v3.json文件，点击Preferences-&gt;Package Setting-&gt;Package Control -&gt;Setting Default，可以看到该文件是放置在网络中进行读取的，而由于GFW的原因，导致无法读取该文件</p>
+
+<p>在Preferences-&gt;Package Setting-&gt;Package Control -&gt;Setting User 中，可以进行用户设置，我们可以将文件下载后，进行本地访问。首先访问<a href="https://packagecontrol.io/channel_v3.json">https://packagecontrol.io/channel_v3.json</a> ，将源代码复制后，新建文件为channel_v3.json（也可以从github中获取源文件），然后在Setting User设置中，添加代码，至此，就可以正常使用install package下载插件。
+<img src="/images/sublime2.png" alt="" /></p>
+
+<p>参考资料：</p>
+
+<p><a href="https://blog.csdn.net/lu_embedded/article/details/79558280">Ubuntu16.04 安装Sublime Text 3 并解决中文输入问题</a></p>
+
+<p><a href="https://www.cnblogs.com/bywallance/p/6776943.html">Ubuntu中安装Sublime Text 3并安装Package Control</a></p>
+
+<p><a href="https://www.cnblogs.com/jellify/p/9522477.html">解决sublime text 3使用Install Package时出现There are no packages available for installation问题</a></p>
+
+
+		  </article>
+		<hr>
+	<br/>
+       
+	<div style="margin-top:10px;margin-bottom:10px">
+	  
+	  <span class="next">
+	    上篇：
+	    <a href="/2019/03/25/JAVA%E7%BB%8F%E5%85%B850.html">
+	      Java经典算法50题
+	    </a>
+	  </span>
+	   
+	  
+	</div>
+	</div>
+	
+        
+	 </div>
+
+</div>
+
+> 
+</div>
+
+        </div>
+      <hr>
+      
+    </div>
+    <!-- /.container -->
+  </body>
+</html>
+
